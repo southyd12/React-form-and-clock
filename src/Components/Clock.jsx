@@ -1,23 +1,23 @@
 import React, {useState} from 'react'
 
-const timezones = [
-  "Europe/London",
-  // "Africa/Addis_Ababa",
-  // "America/Buenos_Aires",
-  // "Asia/Tokyo",
-  // "Australia/Sydney"
-];
+// const timezones = [
+//   "Europe/London",
+//   // "Africa/Addis_Ababa",
+//   // "America/Buenos_Aires",
+//   // "Asia/Tokyo",
+//   // "Australia/Sydney"
+// ];
 
-const locales = [
-  "en-GB",
-  // "ko-KR",
-  // "ar-EG"
-];
+// const locales = [
+//   "en-GB",
+//   // "ko-KR",
+//   // "ar-EG"
+// ];
 
 function Clock({
   date,
-  locale = locales,
-  timezone = Intl.DateTimeFormat().resolvedOptions().timeZone,
+  locale,
+  timezone,
   options = {
     hour: "numeric",
     minute: "numeric",

@@ -3,6 +3,8 @@ import Clock from './Clock';
 
 function ClockApp() {
   const [date, setDate] = useState(new Date());
+  const [localeSelector, setLocaleSelector] = useState("en-GB")
+  const [timezoneSelector, setTimezoneSelector] = useState("Europe/London")
   useEffect(() => {
     const timer = setInterval(() => {
       setDate(new Date());
@@ -12,9 +14,13 @@ function ClockApp() {
     };
   }, []);
   return (
+    <>
     <div>
-      <Clock date={date} />
+      <Clock date={date} locale={localeSelector} timezone={timezoneSelector} />
     </div>
+    <button onClick={() => setLocaleSelector("en-GB") && setTimezoneSelector("Europe/London")}>GB time</button>
+    <button onClick={() => setLocaleSelector("ko-KR") && setTimezoneSelector("South Korea")}>KR time</button>
+    </>
   );
 }
 
