@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import FormDataDisplay from './FormDataDisplay';
 
 const initialValues = {
   username: "",
@@ -28,6 +29,7 @@ function ReactFormHook() {
   const submitHandler = (values) =>  { setFormData(values); reset();};
 
   return (
+    <>
     <form onSubmit={handleSubmit(submitHandler)}>
       <div>
         <label htmlFor="username" className="field-name">Username:</label>
@@ -50,6 +52,7 @@ function ReactFormHook() {
       </div>      
     </form>
     {formData && <FormDataDisplay data={formData}/>}
+    </>
   );
 }
 

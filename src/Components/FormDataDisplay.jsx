@@ -1,8 +1,8 @@
 import React from 'react'
 
-function FormDataDisplay(data) {
+function FormDataDisplay({data}) {
   return (
-    <div>{data}</div>
+    <div>{data.username}</div>
   )
 }
 
