@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 const initialValues = {
-  username: " ",
-  email: " ",
-  age: " ",
+  username: "",
+  email: "",
+  age: "",
 };
 
 const schema = yup.object({
@@ -16,6 +16,8 @@ const schema = yup.object({
 });
 
 function ReactFormHook() {
+  const [formData, setFormData] = useState({});
+
   const { register, handleSubmit, reset, watch, formState: { errors, isDirty, isValid, isSubmitting }, formState } = useForm({mode: 'onChange', defaultValues: initialValues, resolver: yupResolver(schema)});
 
   useEffect(() => {
@@ -23,30 +25,31 @@ function ReactFormHook() {
     console.log("errors", errors);
   });
 
-  const submitHandler = (values) =>  { console.log(values); reset();};
+  const submitHandler = (values) =>  { setFormData(values); reset();};
 
   return (
     <form onSubmit={handleSubmit(submitHandler)}>
       <div>
         <label htmlFor="username" className="field-name">Username:</label>
         <input type='text' {...register('username', {required: true})}/>
-        {errors.username === 'required' && <span>{errors.username.message}</span>}
+        {errors.username && <span>{errors.username.message}</span>}
       </div>
       <div>
         <label htmlFor="email" className="field-name">Email:</label>
         <input type='text' {...register('email', {required: true})}/>
-        {errors.email === 'required' && <span>This field is required</span>}
+        {errors.email && <span>{errors.email.message}</span>}
       </div>
       <div>
         <label htmlFor="age" className="field-name">Age:</label>
         <input type='text' {...register('age', {required: true})}/>
-        {errors.age === 'required' && <span>This field is required</span>}
+        {errors.age && <span>{errors.age.message}</span>}
       </div>
       <div>
         <button type='reset' onClick={reset}>Reset</button>
         <button type='submit' disabled={isSubmitting || (!isValid || !isDirty)}>Submit</button>
-      </div>
+      </div>      
     </form>
+    {formData && <FormDataDisplay data={formData}/>}
   );
 }
 

@@ -6,6 +6,7 @@ function SiteNav() {
     <nav>
       <Link to={`/`}>Form</Link>
       <Link to={`/clock`}>Clock</Link>
+      <Link to={`/cars`}>Cars</Link>
     </nav>
   )
 }
